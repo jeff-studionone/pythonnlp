@@ -1,0 +1,30 @@
+version: '3.7'
+
+networks:
+  pythonnlpnet:
+    external: true
+    name: localdev
+
+services:
+  pythondb:
+    image: postgres
+    networks:
+        - pythonnlpnet
+    container_name: pythonnlp-db
+    restart: on-failure
+  python:
+    build:
+      context: .
+    networks:
+        - pythonnlpnet
+    container_name: python-nlp
+    restart: on-failure
+    environment:
+      VIRTUAL_HOST: python-nlp.docker
+    volumes:
+      - ./code:/var/www/html
+    ports:
+      - "8000:8000"
+    command: tail -f > /dev/null
+    links:
+      - pythondb
