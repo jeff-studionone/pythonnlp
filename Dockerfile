@@ -14,6 +14,7 @@ RUN pip install keras \
     && pip install --upgrade google-api-python-client \
     && pip install --upgrade scikit-learn \
     && pip install --upgrade pandas
+    && pip install --upgrade pillow
 
 RUN cd /var/www/packages/keras \
     && python setup.py install \

@@ -20,7 +20,7 @@ model.compile(loss='mean_squared_error', optimizer='adam')
 logger = keras.callbacks.TensorBoard(
     log_dir='logs',
     write_graph=True,
-    histogram_freq=5
+    histogram_freq=0
 )
 
 # Train the model
